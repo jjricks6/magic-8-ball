@@ -1,0 +1,50 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [prd]
+env:
+  tf_version: "1.0.0"   # must match value in terraform-iac/*/app/main.tf
+  tf_working_dir: './terraform/trn/app'
+
+
+jobs:
+  build_and_deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+      
+      - name: Disallow Concurrent Runs
+        uses: byu-oit/github-action-disallow-concurrent-runs@v1
+        with:
+          token: ${{ github.token }}
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.byu_org_trn_key }}
+          aws-secret-access-key: ${{ secrets.byu_org_trn_secret }}
+          aws-region: us-west-2
+
+      - name: Terraform Setup
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: ${{ env.tf_version }}
+
+      - name: Terraform Init
+        working-directory: ${{ env.tf_working_dir }}
+        run: terraform init
+
+      - name: Terraform Format
+        working-directory: "./"
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Plan
+        working-directory: ${{ env.tf_working_dir }}
+        run: terraform plan -input=false -out=plan 
+
+      - name: Terraform Apply
+        working-directory: ${{ env.tf_working_dir }}
+        run: terraform apply plan
