@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [prd]
+    branches: [master]
 env:
   tf_version: "1.0.0"   # must match value in terraform-iac/*/app/main.tf
   tf_working_dir: './terraform/trn/app'
@@ -24,8 +24,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.byu_org_trn_key }}
-          aws-secret-access-key: ${{ secrets.byu_org_trn_secret }}
+          aws-access-key-id: ${{ secrets.jordanricksaws_key }}
+          aws-secret-access-key: ${{ secrets.jordanricksaws_secret }}
           aws-region: us-west-2
 
       - name: Terraform Setup
