@@ -220,6 +220,24 @@ resource "aws_route53_record" "magic_r53_record" {
     zone_id                = aws_api_gateway_domain_name.magic_api_domain.regional_zone_id
   }
 }
+
+resource "aws_route53_record" "magic_cloudfront_a_record" {
+  name    = var.domain_name
+  type    = "A"
+  zone_id = var.hosted_zone_id
+
+  alias {
+    name = aws_cloudfront_distribution.magic_distribution.domain_name
+  }
+}
+
+resource "aws_route53_record" "magic_cloudfront_cname_record" {
+  zone_id = var.hosted_zone_id
+  name    = "www"
+  type    = "CNAME"
+  ttl     = "300"
+  records = [var.domain_name]
+}
 # ==================== S3 ====================
 
 resource "aws_s3_bucket" "magic_bucket" {

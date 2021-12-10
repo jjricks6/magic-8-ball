@@ -1,7 +1,7 @@
 # Create Cloudfront distribution
 resource "aws_cloudfront_distribution" "magic_distribution" {
   origin {
-    domain_name = aws_s3_bucket.magic_bucket.website_endpoint
+    domain_name = aws_s3_bucket.magic_bucket.bucket_regional_domain_name
     origin_id   = "S3-${aws_s3_bucket.magic_bucket.bucket}"
     custom_origin_config {
       http_port              = 80
@@ -39,7 +39,7 @@ resource "aws_cloudfront_distribution" "magic_distribution" {
   }
   # Distributes content to US and Europe
   price_class = "PriceClass_100"
-  aliases     = ["8-ball.ml"]
+  aliases     = ["8-ball.ml", "www.8-ball.ml"]
   # Restricts who is able to access this content
   restrictions {
     geo_restriction {
