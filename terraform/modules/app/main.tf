@@ -227,7 +227,9 @@ resource "aws_route53_record" "magic_cloudfront_a_record" {
   zone_id = var.hosted_zone_id
 
   alias {
-    name = aws_cloudfront_distribution.magic_distribution.domain_name
+    evaluate_target_health = true
+    name                   = aws_cloudfront_distribution.magic_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.magic_distribution.hosted_zone_id
   }
 }
 
