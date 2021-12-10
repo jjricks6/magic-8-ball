@@ -17,6 +17,8 @@ module "app" {
   env            = "trn"
   app_name       = "magic_8_ball"
   account_number = "226865294839"
+  domain_name    = "8-ball.ml"
+  hosted_zone_id = "Z09767571D0IVLLXRR8P3"
   tags = {
     repo = "https://github.com/jjricks6/magic-8-ball"
     app  = "magic_8_ball"

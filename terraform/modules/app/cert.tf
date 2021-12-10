@@ -1,11 +1,11 @@
 data "aws_route53_zone" "magic_zone" {
-  zone_id      = "Z09767571D0IVLLXRR8P3"
+  zone_id      = var.hosted_zone_id
   private_zone = false
 }
 
 resource "aws_acm_certificate" "magic_cert" {
-  domain_name               = "8-ball.ml"
-  subject_alternative_names = ["*.8-ball.ml"]
+  domain_name               = var.domain_name
+  subject_alternative_names = ["*.${var.domain_name}"]
   validation_method         = "DNS"
   tags = {
     IAC = "Terraform"

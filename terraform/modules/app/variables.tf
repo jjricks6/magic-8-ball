@@ -13,3 +13,11 @@ variable "tags" {
 variable "env" {
   description = "Environment"
 }
+
+variable "domain_name" {
+  description = "Created at freenom.com"
+}
+
+variable "hosted_zone_id" {
+  description = "Hosted Zone Id from route 53"
+}
