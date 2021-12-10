@@ -7,6 +7,7 @@ resource "aws_acm_certificate" "magic_cert" {
   domain_name               = var.domain_name
   subject_alternative_names = ["*.${var.domain_name}"]
   validation_method         = "DNS"
+  provider                  = aws.us-east-1
   tags = {
     IAC = "Terraform"
   }
@@ -32,6 +33,7 @@ resource "aws_route53_record" "magic_cert_validation" {
 resource "aws_acm_certificate_validation" "magic_cert" {
   certificate_arn         = aws_acm_certificate.magic_cert.arn
   validation_record_fqdns = [for record in aws_route53_record.magic_cert_validation : record.fqdn]
+  provider                = aws.us-east-1
   timeouts {
     create = "5m"
   }

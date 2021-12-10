@@ -10,6 +10,12 @@ terraform {
 
 provider "aws" {
   region = "us-west-2"
+  alias  = "us-west-2"
+}
+
+provider "aws" {
+  region = "us-east-1"
+  alias  = "us-east-1"
 }
 
 module "app" {
@@ -23,6 +29,10 @@ module "app" {
     repo = "https://github.com/jjricks6/magic-8-ball"
     app  = "magic_8_ball"
     env  = "trn"
+  }
+  providers = {
+    aws.us-west-2 = aws.us-west-2
+    aws.us-east-1 = aws.us-east-1
   }
 
 }
