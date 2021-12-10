@@ -64,7 +64,7 @@ export default {
         setTimeout(() => {
           axios
             // CHANGE THIS ADDRESS TO YOUR OWN API
-            .post("https://magic.byu-org-trn.amazon.byu.edu/shake")
+            .post("https://6awpcyoep7.execute-api.us-west-2.amazonaws.com/prd")
             .then(response => {
               console.log('🎉 API Called Successfully')
               this.answer = response.data
