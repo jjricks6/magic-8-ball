@@ -49,7 +49,7 @@ resource "aws_cloudfront_distribution" "magic_distribution" {
   }
   # SSL certificate for the service.
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate.magic_cert_oregon.arn
+    acm_certificate_arn = aws_acm_certificate.magic_cert.arn
     ssl_support_method  = "sni-only"
   }
 }
