@@ -18,7 +18,6 @@ resource "aws_iam_role" "magic_role" {
   ]
 }
 EOF
-  permissions_boundary = "arn:aws:iam::${var.account_number}:policy/iamRolePermissionBoundary"
 }
 
 data "aws_iam_policy_document" "policy_doc" {
