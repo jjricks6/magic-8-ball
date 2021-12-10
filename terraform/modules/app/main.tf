@@ -193,6 +193,7 @@ resource "aws_api_gateway_stage" "magic_stage" {
 }
 
 
+
 # resource "aws_api_gateway_domain_name" "magic_domain" {
 #   regional_certificate_arn = module.acs.certificate.arn
 #   domain_name              = "magic.byu-org-trn.amazon.byu.edu"
