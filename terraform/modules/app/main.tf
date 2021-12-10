@@ -195,7 +195,7 @@ resource "aws_api_gateway_stage" "magic_stage" {
 
 
 resource "aws_api_gateway_domain_name" "magic_api_domain" {
-  regional_certificate_arn = aws_acm_certificate.magic_cert.arn
+  regional_certificate_arn = aws_acm_certificate.magic_cert_oregon.arn
   domain_name              = "api.${var.domain_name}"
 
   endpoint_configuration {
