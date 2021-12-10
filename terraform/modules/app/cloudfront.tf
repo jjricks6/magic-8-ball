@@ -27,8 +27,12 @@ resource "aws_cloudfront_distribution" "magic_distribution" {
     # Forward all query strings, cookies and headers
     forwarded_values {
       query_string = true
+      cookies {
+        forward = "none"
+      }
     }
-    viewer_protocol_policy = "allow-all"
+
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
