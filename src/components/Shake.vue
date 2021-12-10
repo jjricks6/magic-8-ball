@@ -64,7 +64,7 @@ export default {
         setTimeout(() => {
           axios
             // CHANGE THIS ADDRESS TO YOUR OWN API
-            .post("https://6awpcyoep7.execute-api.us-west-2.amazonaws.com/prd")
+            .post("https://6awpcyoep7.execute-api.us-west-2.amazonaws.com/prd/shake")
             .then(response => {
               console.log('🎉 API Called Successfully')
               this.answer = response.data
