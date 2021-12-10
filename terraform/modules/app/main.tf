@@ -192,9 +192,6 @@ resource "aws_api_gateway_stage" "magic_stage" {
   stage_name    = "prd"
 }
 
-resource "aws_route53_zone" "magic_zone" {
-  name = "8-ball.ml"
-}
 
 # resource "aws_api_gateway_domain_name" "magic_domain" {
 #   regional_certificate_arn = module.acs.certificate.arn
