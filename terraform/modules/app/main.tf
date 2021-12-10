@@ -3,21 +3,21 @@
 resource "aws_iam_role" "magic_role" {
   name = "magic_role"
 
-  assume_role_policy   = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
+  assume_role_policy = <<-EOF
     {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Action": "sts:AssumeRole",
+          "Principal": {
+            "Service": "lambda.amazonaws.com"
+          },
+          "Effect": "Allow",
+          "Sid": ""
+        }
+      ]
     }
-  ]
-}
-EOF
+  EOF
 }
 
 data "aws_iam_policy_document" "policy_doc" {
@@ -224,20 +224,20 @@ resource "aws_s3_bucket" "magic_bucket" {
   bucket = "magic-bucket-${var.account_number}"
   acl    = "public-read"
   tags   = var.tags
-  policy = <<EOF
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::magic-bucket-${var.account_number}/*"
-        }
-    ]
-}
-EOF
+  policy = <<-EOF
+    {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "PublicReadGetObject",
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::magic-bucket-${var.account_number}/*"
+            }
+        ]
+    }
+  EOF
 
   website {
     index_document = "index.html"
