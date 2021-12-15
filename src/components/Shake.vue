@@ -63,7 +63,7 @@ export default {
         
         setTimeout(() => {
           axios
-            // CHANGE THIS ADDRESS TO YOUR OWN API
+            // CHANGE THIS TO THE ADDRESS OF YOUR OWN API
             .post("https://api.8-ball.ml/shake")
             .then(response => {
               console.log('🎉 API Called Successfully')
@@ -76,7 +76,6 @@ export default {
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1 {
   font-size: 70px;
